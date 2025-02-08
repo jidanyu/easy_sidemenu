@@ -246,6 +246,15 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
             decoration: BoxDecoration(
               color: _setColor(),
               borderRadius: widget.global.style.itemBorderRadius,
+              boxShadow: [
+                if (isHovered)
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05), // 阴影颜色，带透明度
+                    offset: Offset(0, 1), // 阴影的偏移量（水平和垂直方向）
+                    blurRadius: 2, // 模糊半径
+                    spreadRadius: 0, // 扩散半径
+                  ),
+              ],
             ),
             child: ValueListenableBuilder(
               valueListenable: widget.global.displayModeState,
