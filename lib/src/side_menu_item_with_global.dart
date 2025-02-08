@@ -206,7 +206,7 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
       if (isHovered) {
         return list;
       } else {
-        return null;
+        return list;
       }
     } else if (isHovered) {
       return list;
