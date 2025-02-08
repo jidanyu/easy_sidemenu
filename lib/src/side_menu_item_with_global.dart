@@ -191,6 +191,30 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
     }
   }
 
+  List<BoxShadow>? _setBoxShadow() {
+    final list = [
+      if (isHovered)
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05), // 阴影颜色，带透明度
+          offset: const Offset(0, 1), // 阴影的偏移量（水平和垂直方向）
+          blurRadius: 2, // 模糊半径
+          spreadRadius: 0, // 扩散半径
+        ),
+    ];
+
+    if (_getIndexOfCurrentSideMenuItemWidget() == currentPage) {
+      if (isHovered) {
+        return list;
+      } else {
+        return null;
+      }
+    } else if (isHovered) {
+      return list;
+    } else {
+      return null;
+    }
+  }
+
   // Generates an icon based on the mainIcon and iconWidget provided. If mainIcon is null, it returns iconWidget or a SizedBox if iconWidget is also null.
   // Determines the color and size of the icon based on the current selection state. If a badgeContent is provided,
   // wraps the icon with a Badge widget using the badgeContent, badgeColor, and position specified.
@@ -244,18 +268,9 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
             height: widget.global.style.itemHeight,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: _setColor(),
-              borderRadius: widget.global.style.itemBorderRadius,
-              boxShadow: [
-                if (isHovered)
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05), // 阴影颜色，带透明度
-                    offset: Offset(0, 1), // 阴影的偏移量（水平和垂直方向）
-                    blurRadius: 2, // 模糊半径
-                    spreadRadius: 0, // 扩散半径
-                  ),
-              ],
-            ),
+                color: _setColor(),
+                borderRadius: widget.global.style.itemBorderRadius,
+                boxShadow: _setBoxShadow()),
             child: ValueListenableBuilder(
               valueListenable: widget.global.displayModeState,
               builder: (context, value, child) {
