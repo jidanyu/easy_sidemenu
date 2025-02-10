@@ -57,6 +57,12 @@ class SideMenuStyle {
   /// Color of arrow in open state in [SideMenuExpandableItem]
   Color? arrowOpen;
 
+  /// Icon of arrow in open sstate in [SideMenuExpandableItem]
+  IconData? arrowOpenIcon;
+
+  /// Icon of arrow in collapsed sstate in [SideMenuExpandableItem]
+  IconData? arrowCollapseIcon;
+                    
   /// Size of icon on [SideMenuExpandableItem]
   double? iconSizeExpandable;
 
@@ -109,6 +115,8 @@ class SideMenuStyle {
     this.iconSizeExpandable = 24,
     this.arrowOpen = Colors.black,
     this.arrowCollapse = Colors.black54,
+    this.arrowOpenIcon = Icons.arrow_drop_down_circle,
+    this.arrowCollapseIcon = Icons.arrow_drop_down,
     this.decoration,
     this.toggleColor = Colors.black54,
     this.itemOuterPadding = const EdgeInsets.symmetric(horizontal: 5.0),

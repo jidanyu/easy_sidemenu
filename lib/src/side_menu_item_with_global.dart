@@ -193,13 +193,13 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
 
   List<BoxShadow>? _setBoxShadow() {
     final list = [
-      if (isHovered)
-        BoxShadow(
+      BoxShadow(
           color: Colors.black.withOpacity(0.05), // 阴影颜色，带透明度
           offset: const Offset(0, 1), // 阴影的偏移量（水平和垂直方向）
           blurRadius: 2, // 模糊半径
           spreadRadius: 0, // 扩散半径
         ),
+        
     ];
 
     if (_getIndexOfCurrentSideMenuItemWidget() == currentPage) {
