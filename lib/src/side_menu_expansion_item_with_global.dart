@@ -116,6 +116,7 @@ class _SideMenuExpansionState extends State<SideMenuExpansionItemWithGlobal> {
                 color: isExpanded
                     ? widget.global.style.arrowOpen
                     : widget.global.style.arrowCollapse,
+                size: 12,
               ),
               initiallyExpanded: widget.global.expansionStateList[widget.index],
               title: (value == SideMenuDisplayMode.open)
