@@ -41,6 +41,10 @@ class SideMenu extends StatefulWidget {
   /// If you want always shown footer set it to true
   final bool? alwaysShowFooter;
 
+  /// By default footer only shown when display mode is open
+  /// If you want always shown footer set it to true
+  final bool defaultExpansion;
+
   /// Notify when [SideMenuDisplayMode] changed
   final ValueChanged<SideMenuDisplayMode>? onDisplayModeChanged;
 
@@ -65,6 +69,7 @@ class SideMenu extends StatefulWidget {
     this.onDisplayModeChanged,
     this.displayModeToggleDuration,
     this.alwaysShowFooter = false,
+    this.defaultExpansion = false,
     this.collapseWidth = 600,
   }) : super(key: key) {
     global.style = style ?? SideMenuStyle();
@@ -76,7 +81,7 @@ class SideMenu extends StatefulWidget {
       }
     }
     global.expansionStateList =
-        List<bool>.filled(sideMenuExpansionItemCount, false);
+        List<bool>.filled(sideMenuExpansionItemCount, defaultExpansion);
     sidemenuitems.items = items.map((data) {
       if (data is SideMenuItem) {
         return SideMenuItemWithGlobal(
