@@ -3,6 +3,8 @@ import 'package:easy_sidemenu/src/side_menu_display_mode.dart';
 import 'package:easy_sidemenu/src/side_menu_controller.dart';
 
 class SideMenuItem {
+  /// 唯一id
+  final int? id;
   /// Title text
   final String? title;
 
@@ -43,6 +45,7 @@ class SideMenuItem {
       builder;
   const SideMenuItem({
     this.onTap,
+    this.id,
     this.title,
     this.icon,
     this.iconWidget,

@@ -87,6 +87,7 @@ class SideMenu extends StatefulWidget {
         return SideMenuItemWithGlobal(
           global: global,
           title: data.title,
+          id: data.id,
           onTap: data.onTap,
           icon: data.icon,
           iconWidget: data.iconWidget,
@@ -109,6 +110,7 @@ class SideMenu extends StatefulWidget {
               .map((childData) => SideMenuItemWithGlobal(
                     global: global,
                     title: childData.title,
+                    id: childData.id,
                     onTap: childData.onTap,
                     icon: childData.icon,
                     iconWidget: childData.iconWidget,

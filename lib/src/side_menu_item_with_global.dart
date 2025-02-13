@@ -19,6 +19,7 @@ class SideMenuItemWithGlobal extends StatefulWidget {
     Key? key,
     required this.global,
     this.onTap,
+    this.id,
     this.title,
     this.icon,
     this.iconWidget,
@@ -39,6 +40,9 @@ class SideMenuItemWithGlobal extends StatefulWidget {
 
   /// Title text
   final String? title;
+
+  /// index
+  final int? id;
 
   /// A Icon to display before [title]
   final Icon? icon;
@@ -132,6 +136,7 @@ class _SideMenuItemState extends State<SideMenuItemWithGlobal> {
   bool isSameWidget(SideMenuItemWithGlobal other) {
     if (other.icon == widget.icon &&
         other.title == widget.title &&
+        other.id == widget.id &&
         other.builder == widget.builder &&
         other.trailing == widget.trailing) {
       return true;
