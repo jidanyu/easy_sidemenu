@@ -86,64 +86,53 @@ class _SideMenuExpansionState extends State<SideMenuExpansionItemWithGlobal> {
     return ValueListenableBuilder(
       valueListenable: widget.global.displayModeState,
       builder: (context, value, child) {
-        return Theme(
-          data: ThemeData(
-            dividerColor: Colors.transparent,
-            fontFamily: "阿里巴巴普惠体",
+        return ListTileTheme(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: value == SideMenuDisplayMode.compact
+                ? widget.global.style.itemInnerSpacing
+                : widget.global.style.itemInnerSpacing + 5,
           ),
-          child: ListTileTheme(
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: value == SideMenuDisplayMode.compact
-                  ? widget.global.style.itemInnerSpacing
-                  : widget.global.style.itemInnerSpacing + 5,
-            ),
-            
-            horizontalTitleGap: 0,
-            child: ExpansionTile(
-                
-                leading: SizedBox(
-                  // Ensures the icon does not take the full tile width
-                  width: 40.0, // Adjust size constraints as required
-                  child: _generateIconWidget(widget.icon, widget.iconWidget),
-                ),
-                // The title should only take space when SideMenuDisplayMode is open
-                maintainState: true,
-                onExpansionChanged: (value) {
-                  setState(() {
-                    isExpanded = value;
-                    widget.global.expansionStateList[widget.index] = value;
-                  });
-                  widget.onTap
-                      ?.call(widget.index, widget.global.controller, value);
-                },
-                trailing: Icon(
-                  isExpanded
-                      ? widget.global.style.arrowOpenIcon
-                      : widget.global.style.arrowCollapseIcon,
-                  color: isExpanded
-                      ? widget.global.style.arrowOpen
-                      : widget.global.style.arrowCollapse,
-                ),
-                initiallyExpanded:
-                    widget.global.expansionStateList[widget.index],
-                title: (value == SideMenuDisplayMode.open)
-                    ? Text(
-                        widget.title ?? '',
-                        style: widget.global.expansionStateList[widget.index]
-                            ? const TextStyle(fontSize: 17, color: Colors.black)
-                                .merge(widget.global.style
-                                        .selectedTitleTextStyleExpandable ??
-                                    widget.global.style.selectedTitleTextStyle)
-                            : const TextStyle(
-                                    fontSize: 17, color: Colors.black54)
-                                .merge(widget.global.style
-                                        .unselectedTitleTextStyleExpandable ??
-                                    widget
-                                        .global.style.unselectedTitleTextStyle),
-                      )
-                    : const Text(''),
-                children: widget.children),
-          ),
+          horizontalTitleGap: 0,
+          child: ExpansionTile(
+              leading: SizedBox(
+                // Ensures the icon does not take the full tile width
+                width: 40.0, // Adjust size constraints as required
+                child: _generateIconWidget(widget.icon, widget.iconWidget),
+              ),
+              // The title should only take space when SideMenuDisplayMode is open
+              maintainState: true,
+              onExpansionChanged: (value) {
+                setState(() {
+                  isExpanded = value;
+                  widget.global.expansionStateList[widget.index] = value;
+                });
+                widget.onTap
+                    ?.call(widget.index, widget.global.controller, value);
+              },
+              trailing: Icon(
+                isExpanded
+                    ? widget.global.style.arrowOpenIcon
+                    : widget.global.style.arrowCollapseIcon,
+                color: isExpanded
+                    ? widget.global.style.arrowOpen
+                    : widget.global.style.arrowCollapse,
+              ),
+              initiallyExpanded: widget.global.expansionStateList[widget.index],
+              title: (value == SideMenuDisplayMode.open)
+                  ? Text(
+                      widget.title ?? '',
+                      style: widget.global.expansionStateList[widget.index]
+                          ? const TextStyle(fontSize: 17, color: Colors.black)
+                              .merge(widget.global.style
+                                      .selectedTitleTextStyleExpandable ??
+                                  widget.global.style.selectedTitleTextStyle)
+                          : const TextStyle(fontSize: 17, color: Colors.black54)
+                              .merge(widget.global.style
+                                      .unselectedTitleTextStyleExpandable ??
+                                  widget.global.style.unselectedTitleTextStyle),
+                    )
+                  : const Text(''),
+              children: widget.children),
         );
       },
     );
